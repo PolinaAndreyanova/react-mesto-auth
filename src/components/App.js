@@ -9,6 +9,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -46,7 +47,7 @@ function App() {
   const handleAddCard = (cardName, cardLink, cardTitleRef, cardLinkRef) => {
     api.addNewCard(cardName, cardLink)
       .then((cardData) => {
-        setCards([cardData, ...cards]); 
+        setCards([cardData, ...cards]);
         setAddPlacePopupOpen(false);
         cardTitleRef.current.value = '';
         cardLinkRef.current.value = '';
@@ -56,7 +57,7 @@ function App() {
 
   const handleCardLike = (card) => {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    
+
     (!isLiked) ?
       api.likeCard(card._id)
         .then((newCard) => {
@@ -100,35 +101,47 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
 
-        <Main
-          cards={cards}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-          onEditProfile={() => setEditProfilePopupOpen(true)}
-          onAddPlace={() => setAddPlacePopupOpen(true)}
-          onEditAvatar={() => setEditAvatarPopupOpen(true)}
-          onCardImage={(card) => handleCardClick(card)}
-        />
+        <Switch>
+          <Route exact path="/">
+            <Main
+              cards={cards}
+              onCardLike={handleCardLike}
+              onCardDelete={handleCardDelete}
+              onEditProfile={() => setEditProfilePopupOpen(true)}
+              onAddPlace={() => setAddPlacePopupOpen(true)}
+              onEditAvatar={() => setEditAvatarPopupOpen(true)}
+              onCardImage={(card) => handleCardClick(card)}
+            />
 
-        <Footer />
+            <Footer />
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={() => setEditProfilePopupOpen(false)} onUpdateUser={handleUpdateUser} />
+            <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={() => setEditProfilePopupOpen(false)} onUpdateUser={handleUpdateUser} />
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={() => setAddPlacePopupOpen(false)} onAddCard={handleAddCard} />
-        
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={() => setEditAvatarPopupOpen(false)} onUpdateAvatar={handleUpdateAvatar} />
+            <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={() => setAddPlacePopupOpen(false)} onAddCard={handleAddCard} />
 
-        <PopupWithForm
-          name='delete-card'
-          title='Вы уверены?'
-          formName='deleteCard'
-          btnText='Да'
-        />
+            <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={() => setEditAvatarPopupOpen(false)} onUpdateAvatar={handleUpdateAvatar} />
 
-        <ImagePopup
-          card={selectedCard}
-          onClose={() => setSelectedCard(null)}
-        />
+            <PopupWithForm
+              name='delete-card'
+              title='Вы уверены?'
+              formName='deleteCard'
+              btnText='Да'
+            />
+
+            <ImagePopup
+              card={selectedCard}
+              onClose={() => setSelectedCard(null)}
+            />
+          </Route>
+
+          <Route path="/sign-up">
+
+          </Route>
+
+          <Route path="/sign-in">
+
+          </Route>
+        </Switch>
       </CurrentUserContext.Provider>
     </div>
   );
