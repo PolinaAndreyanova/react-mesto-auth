@@ -1,4 +1,4 @@
-.login__title {
+.unauthorizedForm__title {
   margin: 0 auto;
   font-family: 'Inter';
   font-style: normal;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  .login__title {
+  .unauthorizedForm__title {
     font-size: 20px;
     line-height: 24px;
   }

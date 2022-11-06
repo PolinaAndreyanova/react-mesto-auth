@@ -10,7 +10,8 @@ import AddPlacePopup from './AddPlacePopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import Login from './Login';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import Register from './Register';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -139,7 +140,7 @@ function App() {
           </Route>
 
           <Route path="/sign-up">
-
+            <Register />
           </Route>
 
           <Route path="/sign-in">

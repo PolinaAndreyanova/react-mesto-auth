@@ -1,11 +1,12 @@
-.login__form {
-  margin: 50px auto 0;
+.unauthorizedForm {
+  position: relative;
+  margin: 60px auto 0;
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {
-  .login__form {
+  .unauthorizedForm {
     margin: 40px auto 0;
   }
 }
