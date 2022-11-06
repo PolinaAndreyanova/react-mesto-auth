@@ -9,7 +9,8 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
-import { Route, Switch } from 'react-router-dom';
+import Login from './Login';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -20,6 +21,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const [currentUser, setCurrentUser] = useState({});
+
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -99,7 +102,8 @@ function App() {
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header />
+        
+        <Header loggedIn={loggedIn} />
 
         <Switch>
           <Route exact path="/">
@@ -139,7 +143,7 @@ function App() {
           </Route>
 
           <Route path="/sign-in">
-
+            <Login />
           </Route>
         </Switch>
       </CurrentUserContext.Provider>
