@@ -11,7 +11,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import Login from './Login';
 import Register from './Register';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import InfoTooltip from './InfoTooltip';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -28,7 +28,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -136,6 +136,10 @@ function App() {
 
           <Route path="/sign-in">
             <Login />
+          </Route>
+
+          <Route>
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
           </Route>
 
         </Switch>

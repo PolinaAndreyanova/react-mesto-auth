@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 function Login() {
   return (
     <div className="unauthorized-form">
-      <button className="unauthorized-form__header-button">Регистрация</button>
+      <Link to="/sign-up" className="unauthorized-form__header-button">Регистрация</Link>
       <h2 className="unauthorized-form__title">Вход</h2>
       <form method="get" name="unauthorized-formForm" className="unauthorized-form__form" onSubmit={''} noValidate>
         <input

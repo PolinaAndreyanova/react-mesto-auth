@@ -2,10 +2,7 @@
   position: absolute;
   top: -128px;
   right: 0;
-  border: none;
-  padding: 0;
   color: #ffffff;
-  background-color: transparent;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -14,7 +11,7 @@
   text-align: right;
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .unauthorized-form__header-button:hover {

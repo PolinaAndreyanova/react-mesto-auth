@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 function Register() {
   return (
     <div className="unauthorized-form">
-      <button className="unauthorized-form__header-button">Войти</button>
+      <Link to="/sign-in" className="unauthorized-form__header-button">Войти</Link>
       <h2 className="unauthorized-form__title">Регистрация</h2>
       <form method="get" name="unauthorized-formForm" className="unauthorized-form__form" onSubmit={''} noValidate>
         <input
@@ -27,7 +29,7 @@ function Register() {
           onChange={''}
         />
         <button type="submit" className="unauthorized-form__submit-button">Зарегистрироваться</button>
-        <button className="unauthorized-form__button">Уже зарегистрированы? Войти</button>
+        <Link to="sign-in" className="unauthorized-form__button">Уже зарегистрированы? Войти</Link>
       </form>
     </div>
   );

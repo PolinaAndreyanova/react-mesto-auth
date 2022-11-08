@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import Card from "./Card";
 
@@ -9,7 +10,7 @@ function Main(props) {
     <main className="content">
       <div className="authorized-form">
         <p className="authorized-form__user-email">email@mail.com</p>
-        <button className="authorized-form__header-button">Выйти</button>
+        <Link to="/sign-in" className="authorized-form__header-button">Выйти</Link>
       </div>
       <section className="profile">
         <div className="profile__avatar-content">

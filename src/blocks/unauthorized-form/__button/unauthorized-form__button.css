@@ -9,12 +9,9 @@
   line-height: 17px;
   text-align: center;
   color: #FFFFFF;
-  background-color: transparent;
-  border: none;
-  padding: 0;
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .unauthorized-form__button:hover {

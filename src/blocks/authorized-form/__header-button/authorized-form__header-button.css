@@ -6,14 +6,11 @@
   line-height: 22px;
   text-align: right;
   color: #ffffff;
-  background-color: transparent;
-  border: none;
-  padding: 0;
   width: 56px;
   height: 22px;
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .authorized-form__header-button:hover {
