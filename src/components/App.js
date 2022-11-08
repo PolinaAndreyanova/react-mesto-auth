@@ -28,7 +28,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
