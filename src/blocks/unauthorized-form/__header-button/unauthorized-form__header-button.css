@@ -1,4 +1,4 @@
-.unauthorizedForm__header-button {
+.unauthorized-form__header-button {
   position: absolute;
   top: -128px;
   right: 0;
@@ -17,12 +17,12 @@
   cursor: pointer;
 }
 
-.unauthorizedForm__header-button:hover {
+.unauthorized-form__header-button:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {
-  .unauthorizedForm__header-button {
+  .unauthorized-form__header-button {
     top: -90px;
     right: 30px;
     font-size: 14px;

@@ -52,10 +52,14 @@
 @import url(./blocks/popup/__icon/_type/popup__icon_type_fail.css);
 @import url(./blocks/popup/__message/popup__message.css);
 
-@import url(./blocks/unauthorizedForm/__header-button/unauthorizedForm__header-button.css);
-@import url(./blocks/unauthorizedForm/unauthorizedForm.css);
-@import url(./blocks/unauthorizedForm/__title/unauthorizedForm__title.css);
-@import url(./blocks/unauthorizedForm/__form/unauthorizedForm__form.css);
-@import url(./blocks/unauthorizedForm/__input/unauthorizedForm__input.css);
-@import url(./blocks/unauthorizedForm/__submit-button/unauthorizedForm__submit-button.css);
-@import url(./blocks/unauthorizedForm/__button/unauthorizedForm__button.css);
+@import url(./blocks/unauthorized-form/__header-button/unauthorized-form__header-button.css);
+@import url(./blocks/unauthorized-form/unauthorized-form.css);
+@import url(./blocks/unauthorized-form/__title/unauthorized-form__title.css);
+@import url(./blocks/unauthorized-form/__form/unauthorized-form__form.css);
+@import url(./blocks/unauthorized-form/__input/unauthorized-form__input.css);
+@import url(./blocks/unauthorized-form/__submit-button/unauthorized-form__submit-button.css);
+@import url(./blocks/unauthorized-form/__button/unauthorized-form__button.css);
+
+@import url(./blocks/authorized-form/authorized-form.css);
+@import url(./blocks/authorized-form/__user-email/authorized-form__user-email.css);
+@import url(./blocks/authorized-form/__header-button/authorized-form__header-button.css);

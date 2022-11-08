@@ -1,0 +1,11 @@
+.authorized-form {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: -105px;
+  right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  
+}

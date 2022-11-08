@@ -7,6 +7,10 @@ function Main(props) {
 
   return (
     <main className="content">
+      <div className="authorized-form">
+        <p className="authorized-form__user-email">email@mail.com</p>
+        <button className="authorized-form__header-button">Выйти</button>
+      </div>
       <section className="profile">
         <div className="profile__avatar-content">
           <button type="button" className="profile__avatar-edit-button" onClick={props.onEditAvatar}></button>

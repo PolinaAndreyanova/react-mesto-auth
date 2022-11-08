@@ -1,4 +1,4 @@
-.unauthorizedForm__submit-button {
+.unauthorized-form__submit-button {
   margin: 216px auto 0;
   width: 358px;
   height: 50px;
@@ -17,12 +17,12 @@
   cursor: pointer;
 }
 
-.unauthorizedForm__submit-button:hover {
+.unauthorized-form__submit-button:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 600px) {
-  .unauthorizedForm__submit-button {
+  .unauthorized-form__submit-button {
     margin: 173px auto 0;
     width: 260px;
     height: 46px;
