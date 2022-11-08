@@ -47,6 +47,10 @@
 @import url(./blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__subtitle/popup__subtitle.css);
+@import url(./blocks/popup/__icon/popup__icon.css);
+@import url(./blocks/popup/__icon/_type/popup__icon_type_success.css);
+@import url(./blocks/popup/__icon/_type/popup__icon_type_fail.css);
+@import url(./blocks/popup/__message/popup__message.css);
 
 @import url(./blocks/unauthorizedForm/__header-button/unauthorizedForm__header-button.css);
 @import url(./blocks/unauthorizedForm/unauthorizedForm.css);

@@ -12,11 +12,15 @@ import ImagePopup from './ImagePopup';
 import Login from './Login';
 import Register from './Register';
 import { Route, Switch } from 'react-router-dom';
+import InfoTooltip from './InfoTooltip';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
+
+  const [isRegistrationOk, setRegistrationOk] = useState(false);
 
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -141,6 +145,11 @@ function App() {
 
           <Route path="/sign-up">
             <Register />
+            <InfoTooltip
+              isOpen={isInfoTooltipPopupOpen}
+              onClose={() => setInfoTooltipPopupOpen(false)}
+              success={isRegistrationOk}
+            />
           </Route>
 
           <Route path="/sign-in">
