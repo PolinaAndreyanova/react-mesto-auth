@@ -13,6 +13,7 @@ import Login from './Login';
 import Register from './Register';
 import { Route, Switch } from 'react-router-dom';
 import InfoTooltip from './InfoTooltip';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -107,41 +108,22 @@ function App() {
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        
+
         <Header loggedIn={loggedIn} />
 
         <Switch>
-          <Route exact path="/">
-            <Main
-              cards={cards}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
-              onEditProfile={() => setEditProfilePopupOpen(true)}
-              onAddPlace={() => setAddPlacePopupOpen(true)}
-              onEditAvatar={() => setEditAvatarPopupOpen(true)}
-              onCardImage={(card) => handleCardClick(card)}
-            />
-
-            <Footer />
-
-            <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={() => setEditProfilePopupOpen(false)} onUpdateUser={handleUpdateUser} />
-
-            <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={() => setAddPlacePopupOpen(false)} onAddCard={handleAddCard} />
-
-            <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={() => setEditAvatarPopupOpen(false)} onUpdateAvatar={handleUpdateAvatar} />
-
-            <PopupWithForm
-              name='delete-card'
-              title='Вы уверены?'
-              formName='deleteCard'
-              btnText='Да'
-            />
-
-            <ImagePopup
-              card={selectedCard}
-              onClose={() => setSelectedCard(null)}
-            />
-          </Route>
+          <ProtectedRoute
+            exact path="/"
+            loggedIn={loggedIn}
+            component={Main}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+            onEditProfile={() => setEditProfilePopupOpen(true)}
+            onAddPlace={() => setAddPlacePopupOpen(true)}
+            onEditAvatar={() => setEditAvatarPopupOpen(true)}
+            onCardImage={(card) => handleCardClick(card)}
+          />
 
           <Route path="/sign-up">
             <Register />
@@ -155,7 +137,28 @@ function App() {
           <Route path="/sign-in">
             <Login />
           </Route>
+
         </Switch>
+
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={() => setEditProfilePopupOpen(false)} onUpdateUser={handleUpdateUser} />
+
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={() => setAddPlacePopupOpen(false)} onAddCard={handleAddCard} />
+
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={() => setEditAvatarPopupOpen(false)} onUpdateAvatar={handleUpdateAvatar} />
+
+        <PopupWithForm
+          name='delete-card'
+          title='Вы уверены?'
+          formName='deleteCard'
+          btnText='Да'
+        />
+
+        <ImagePopup
+          card={selectedCard}
+          onClose={() => setSelectedCard(null)}
+        />
+
+        <Footer />
       </CurrentUserContext.Provider>
     </div>
   );
