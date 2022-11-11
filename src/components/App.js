@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 
-import api from '../utils/1';
-import * as auth from '../utils/2';
+import api from '../utils/api';
+import * as auth from '../utils/auth';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
