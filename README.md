@@ -1,6 +1,6 @@
 # Проект: Место-React с авторизацией и регистрацией
 
-## Посмотреть: 
+## Посмотреть: https://polinaandreyanova.github.io/react-mesto-auth/
 
 ### Обзор
 
