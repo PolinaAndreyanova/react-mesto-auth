@@ -3,8 +3,8 @@ import { useState } from "react";
 import InfoTooltip from "./InfoTooltip";
 
 function Register(props) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   function handleChangeEmail(e) {
     setEmail(e.target.value);

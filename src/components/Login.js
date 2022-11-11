@@ -2,8 +2,8 @@ import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
 
 function Login(props) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   function handleChangeEmail(e) {
     setEmail(e.target.value);
