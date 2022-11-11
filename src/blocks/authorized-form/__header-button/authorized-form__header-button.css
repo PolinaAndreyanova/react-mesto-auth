@@ -2,8 +2,6 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
   text-align: right;
   color: #ffffff;
   width: 56px;
@@ -15,8 +13,4 @@
 
 .authorized-form__header-button:hover {
   opacity: 0.8;
-}
-
-@media screen and (max-width: 600px) {
-  
 }

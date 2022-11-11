@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -15,7 +15,11 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    props.onLogin({password, email});
   }
+
+  if (props.isLoggedIn) return <Redirect to="/" />;
 
   return (
     <div className="unauthorized-form">

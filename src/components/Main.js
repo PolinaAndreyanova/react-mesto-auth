@@ -9,8 +9,8 @@ function Main(props) {
   return (
     <main className="content">
       <div className="authorized-form">
-        <p className="authorized-form__user-email">email@mail.com</p>
-        <Link to="/sign-in" className="authorized-form__header-button">Выйти</Link>
+        <p className="authorized-form__user-email">{props.userEmail}</p>
+        <Link to="/sign-in" className="authorized-form__header-button" onClick={props.onLogout}>Выйти</Link>
       </div>
       <section className="profile">
         <div className="profile__avatar-content">

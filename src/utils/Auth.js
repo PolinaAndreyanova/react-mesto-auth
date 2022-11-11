@@ -1,8 +1,8 @@
-const baseUrl = "https://auth.nomoreparties.co/";
+const baseUrl = "https://auth.nomoreparties.co";
 
-const checkResponse = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.statusText}`);
+const checkResponse = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 
-const register = ({password, email}) => {
+export const register = ({password, email}) => {
   return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
@@ -13,7 +13,7 @@ const register = ({password, email}) => {
   .then(checkResponse)
 };
 
-const authorize = ({password, email}) => {
+export const authorize = ({password, email}) => {
   return fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
@@ -24,14 +24,13 @@ const authorize = ({password, email}) => {
   .then(checkResponse)
 };
 
-const getContent = (token) => {
+export const getContent = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
       "Authorization" : `Bearer ${token}`
-    },
-    body: JSON.stringify({password, email})
+    }
   })
   .then(checkResponse)
 };

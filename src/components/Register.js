@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
+import InfoTooltip from "./InfoTooltip";
 
-function Register() {
+function Register(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -15,7 +16,13 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    props.onRegister({password, email});
   }
+
+  if (props.isLoggedIn) return <Redirect to="/" />;
+
+  if (props.success && !props.isPopupOpen) return <Redirect to="/sign-in" />;
 
   return (
     <div className="unauthorized-form">
@@ -47,6 +54,11 @@ function Register() {
         <button type="submit" className="unauthorized-form__submit-button">Зарегистрироваться</button>
         <Link to="sign-in" className="unauthorized-form__button">Уже зарегистрированы? Войти</Link>
       </form>
+      <InfoTooltip 
+        isOpen={props.isPopupOpen}
+        onClose={props.onClosePopup}
+        success={props.success} 
+      />
     </div>
   );
 }
