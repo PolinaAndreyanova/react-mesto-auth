@@ -37,6 +37,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [userEmail, setUserEmail] = useState(null);
 
+  const [isLoading, setLoading] = useState(false);
+
   const location = useLocation();
 
   const handleCardClick = (card) => {
@@ -44,25 +46,30 @@ function App() {
   };
 
   const handleUpdateUser = (newUserData) => {
+    setLoading(true);
     api.editProfile(newUserData.name, newUserData.about)
       .then((userData) => {
         setCurrentUser(userData);
         setEditProfilePopupOpen(false);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => setLoading(false));
   };
 
   const handleUpdateAvatar = (newAvatarData, avatarRef) => {
+    setLoading(true);
     api.updateAvatar(newAvatarData)
       .then((userData) => {
         setCurrentUser(userData);
         setEditAvatarPopupOpen(false);
         avatarRef.current.value = '';
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => setLoading(false));
   };
 
   const handleAddCard = (cardName, cardLink, cardTitleRef, cardLinkRef) => {
+    setLoading(true);
     api.addNewCard(cardName, cardLink)
       .then((cardData) => {
         setCards([cardData, ...cards]);
@@ -70,7 +77,8 @@ function App() {
         cardTitleRef.current.value = '';
         cardLinkRef.current.value = '';
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => setLoading(false));
   };
 
   const handleCardLike = (card) => {
@@ -96,12 +104,14 @@ function App() {
   }
 
   const handleCardDelete = (card) => {
+    setLoading(true);
     api.deleteCard(card._id)
       .then(() => {
         setCards(cards.filter(c => c._id !== card._id))
         setDeleteCardPopupOpen(false);
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => setLoading(false));
   };
 
   const handleAuthenticate = (data) => {
@@ -110,6 +120,7 @@ function App() {
   }
 
   const handleLogin = ({ password, email }) => {
+    setLoading(true);
     auth.authorize({ password, email })
       .then((data) => {
         if (data.token) {
@@ -117,10 +128,12 @@ function App() {
           setUserEmail(email);
         }
       })
-      .catch(err => console.log(`Ошибка: ${err}`));
+      .catch(err => console.log(`Ошибка: ${err}`))
+      .finally(() => setLoading(false));
   };
 
   const handleRegister = ({ password, email }) => {
+    setLoading(true);
     auth.register({ password, email })
       .then((data) => {
         if (data) {
@@ -132,6 +145,7 @@ function App() {
       })
       .finally(() => {
         setInfoTooltipPopupOpen(true);
+        setLoading(false);
       });
   };
 
@@ -213,6 +227,7 @@ function App() {
               success={isRegistrationOk}
               isPopupOpen={isInfoTooltipPopupOpen}
               onClosePopup={() => setInfoTooltipPopupOpen(false)}
+              loading={isLoading}
             />
           </Route>
 
@@ -220,6 +235,7 @@ function App() {
             <Login
               isLoggedIn={loggedIn}
               onLogin={handleLogin}
+              loading={isLoading}
             />
           </Route>
 
@@ -233,18 +249,21 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={() => setEditProfilePopupOpen(false)}
           onUpdateUser={handleUpdateUser}
+          loading={isLoading}
         />
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={() => setAddPlacePopupOpen(false)}
           onAddCard={handleAddCard}
+          loading={isLoading}
         />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={() => setEditAvatarPopupOpen(false)}
           onUpdateAvatar={handleUpdateAvatar}
+          loading={isLoading}
         />
 
         <DeleteCardPopup
@@ -252,14 +271,8 @@ function App() {
           isOpen={isDeleteCardPopupOpen}
           onClose={() => setDeleteCardPopupOpen(false)}
           onDeleteCard={handleCardDelete}
+          loading={isLoading}
         />
-
-        {/* <PopupWithForm
-          name='delete-card'
-          title='Вы уверены?'
-          formName='deleteCard'
-          btnText='Да'
-        /> */}
 
         <ImagePopup
           card={selectedCard}

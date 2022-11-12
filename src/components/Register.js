@@ -51,7 +51,7 @@ function Register(props) {
           placeholder="Пароль"
           onChange={handleChangePassword}
         />
-        <button type="submit" className="unauthorized-form__submit-button">Зарегистрироваться</button>
+        <button type="submit" className="unauthorized-form__submit-button">{props.loading ? 'Регистрация...' : 'Зарегистрироваться'}</button>
         <Link to="sign-in" className="unauthorized-form__button">Уже зарегистрированы? Войти</Link>
       </form>
       <InfoTooltip 

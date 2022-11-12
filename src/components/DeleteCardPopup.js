@@ -12,7 +12,7 @@ function DeleteCardPopup(props) {
       name='delete-card'
       title='Вы уверены?'
       formName='deleteCard'
-      btnText='Да'
+      btnText={props.loading ? 'Удаление...' : 'Да'}
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}

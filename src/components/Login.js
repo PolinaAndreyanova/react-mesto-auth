@@ -48,7 +48,7 @@ function Login(props) {
           placeholder="Пароль"
           onChange={handleChangePassword}
         />
-        <button type="submit" className="unauthorized-form__submit-button">Войти</button>
+        <button type="submit" className="unauthorized-form__submit-button">{props.loading ? 'Выполняется вход...' : 'Войти'}</button>
       </form>
     </div>
   );

@@ -16,7 +16,7 @@ function AddPlacePopup(props) {
       name='add-profile'
       title='Новое место'
       formName='place'
-      btnText='Сохранить'
+      btnText={props.loading ? 'Сохранение...' : 'Сохранить'}
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}>
