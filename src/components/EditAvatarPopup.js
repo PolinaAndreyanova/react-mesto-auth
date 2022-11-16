@@ -1,14 +1,29 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup(props) {
   const avatarRef = useRef();
+  
+  const [isAvatartInputValid, setAvatartInputValid] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
   
     props.onUpdateAvatar(avatarRef.current.value, avatarRef);
   } 
+
+  // const handleValidate = (inputName, inputValue) => {
+  //   switch(inputName) {
+  //     case 'avatar':
+  //       (!inputValue) 
+  //         ? setInputValid(false)
+  //         : setInputValid(inputValue.match(/(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i) ? true : false); 
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   setAvatartInputValid(props.onValidate('url', avatarRef.current.value || '1'));
+  // }, [props, avatarRef.current.value]);
 
   return (
     <PopupWithForm
@@ -28,7 +43,7 @@ function EditAvatarPopup(props) {
         placeholder="Ссылка на аватар"
         ref={avatarRef}
       />
-      <p className="popup__error avatar-input-error"></p>
+      <p className="popup__error avatar-input-error">{!isAvatartInputValid && 'Поле заполнено неккоректно'}</p>
     </PopupWithForm>
   );
 }

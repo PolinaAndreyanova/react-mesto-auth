@@ -6,12 +6,10 @@ function EditProfilePopup(props) {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
 
-  const currentUser = useContext(CurrentUserContext);
+  const [isNameInputValid, setNameInputValid] = useState(true);
+  const [isDescriptionInputValid, setDescriptionInputValid] = useState(true);
 
-  useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser, props.isOpen]); 
+  const currentUser = useContext(CurrentUserContext);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -30,6 +28,32 @@ function EditProfilePopup(props) {
     });
   }
 
+  const handleValidate = (inputName, inputValue) => {
+    switch(inputName) {
+      case 'name':
+        setNameInputValid(inputValue.length >= 2 && inputValue.length <= 40);
+        break;
+      case 'description':
+        setDescriptionInputValid(inputValue.length >= 2 && inputValue.length <= 200);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser, props.isOpen]); 
+
+  useEffect(() => {
+    (name) && handleValidate('name', name);
+  }, [name]);
+
+  useEffect(() => {
+    (description) && handleValidate('description', description);
+  }, [description]);
+
   return (
     <PopupWithForm
       name='edit-profile'
@@ -38,7 +62,8 @@ function EditProfilePopup(props) {
       btnText={props.loading ? 'Сохранение...' : 'Сохранить'}
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      btnDisabled={!(isNameInputValid && isDescriptionInputValid)}>
       <input
         required
         id="name-input"
@@ -51,7 +76,7 @@ function EditProfilePopup(props) {
         placeholder="Имя"
         onChange={handleChangeName}
       />
-      <p className="popup__error name-input-error"></p>
+      <p className={`popup__error name-input-error ${!isNameInputValid && 'popup__error_visible'}`}>{!isNameInputValid && 'Поле заполнено неккоректно'}</p>
       <input
         required
         id="status-input"
@@ -64,7 +89,7 @@ function EditProfilePopup(props) {
         placeholder="Статус"
         onChange={handleChangeDescription}
       />
-      <p className="popup__error status-input-error"></p>
+      <p className={`popup__error status-input-error ${!isDescriptionInputValid && 'popup__error_visible'}`}>{!isDescriptionInputValid && 'Поле заполнено неккоректно'}</p>
     </PopupWithForm>
   );
 }
