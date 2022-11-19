@@ -68,14 +68,15 @@ function App() {
       .finally(() => setLoading(false));
   };
 
-  const handleAddCard = (cardName, cardLink, cardTitleRef, cardLinkRef) => {
+  const handleAddCard = (cardName, cardLink) => {
     setLoading(true);
     api.addNewCard(cardName, cardLink)
       .then((cardData) => {
         setCards([cardData, ...cards]);
         setAddPlacePopupOpen(false);
-        cardTitleRef.current.value = '';
-        cardLinkRef.current.value = '';
+        return;
+        // cardTitleRef.current.value = '';
+        // cardLinkRef.current.value = '';
       })
       .catch(err => console.log(`Ошибка: ${err}`))
       .finally(() => setLoading(false));
