@@ -3,7 +3,7 @@ import PopupWithForm from './PopupWithForm';
 
 function EditAvatarPopup(props) {
   const avatarRef = useRef();
-  
+
   const [isAvatartInputValid, setAvatartInputValid] = useState(true);
 
   function handleSubmit(e) {
@@ -12,18 +12,14 @@ function EditAvatarPopup(props) {
     props.onUpdateAvatar(avatarRef.current.value, avatarRef);
   } 
 
-  // const handleValidate = (inputName, inputValue) => {
-  //   switch(inputName) {
-  //     case 'avatar':
-  //       (!inputValue) 
-  //         ? setInputValid(false)
-  //         : setInputValid(inputValue.match(/(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i) ? true : false); 
-  //   }
+  // const handleValidate = () => {
+  //   setAvatartInputValid(avatarRef.current.value.match(/(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i) ? true : false);
   // }
 
   // useEffect(() => {
-  //   setAvatartInputValid(props.onValidate('url', avatarRef.current.value || '1'));
-  // }, [props, avatarRef.current.value]);
+  //   // console.log(avatarRef.current.value)
+  //   (avatarRef.current.value) && handleValidate();
+  // }, [avatarRef.current]);
 
   return (
     <PopupWithForm
@@ -33,7 +29,8 @@ function EditAvatarPopup(props) {
       btnText={props.loading ? 'Сохранение...' : 'Сохранить'}
       isOpen={props.isOpen}
       onClose={props.onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      btnDisabled={!isAvatartInputValid}>
       <input
         required
         id="avatar-input"
